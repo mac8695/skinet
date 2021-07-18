@@ -1,0 +1,21 @@
+button.nav-link {
+    background: #073642;
+    border-radius: 0;
+    border: none;
+
+    &.active {
+        background: #002730;
+    }
+    &:focus {
+        outline: none;
+    }
+    &.active:hover {
+        color: aqua;
+    }
+    & :active {
+        outline: none;
+    }
+    &.active:focus {
+        outline: none;
+    }
+}
