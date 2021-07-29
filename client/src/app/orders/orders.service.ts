@@ -13,11 +13,7 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
 
   getOrders() {
-    return this.http.get<IOrder[]>(this.baseUrl + 'orders').pipe(
-      map((orders: IOrder[]) => {
-        return orders.sort((a,b) => a.id - b.id);
-      })
-    );
+    return this.http.get<IOrder[]>(this.baseUrl + 'orders');
   }
 
   getOrder(id: number) {
