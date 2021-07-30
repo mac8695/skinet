@@ -37,6 +37,7 @@ namespace Infrastructure.Services
                 var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync((int)basket.DeliveryMethodId);
                 shippingPrice = deliveryMethod.Price;
             }
+            
             foreach (var item in basket.Items)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
@@ -82,6 +83,7 @@ namespace Infrastructure.Services
             if(order == null) return null;
 
             order.Status = OrderStatus.PaymentFailed;
+            _unitOfWork.Repository<Order>().Update(order);
             await _unitOfWork.Complete();
 
             return order;
@@ -94,7 +96,7 @@ namespace Infrastructure.Services
 
             if(order == null) return null;
 
-            order.Status = OrderStatus.PayementReceived;
+            order.Status = OrderStatus.PaymentReceived;
             _unitOfWork.Repository<Order>().Update(order);
 
             await _unitOfWork.Complete();
